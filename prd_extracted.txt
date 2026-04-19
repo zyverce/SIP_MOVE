@@ -1,0 +1,192 @@
+굽굾굿궀 PRODUCT REQUIREMENTS DOCUMENT (PRD) 
+Project: SIP & MOVE (KSRTC Smart Beverage Ordering System) 
+ 
+1.  Product Overview 
+SIP & MOVE  is an onboard digital ordering system designed for KSRTC buses, allowing 
+passengers to order tea/co Ưee through in -seat screens. Orders are processed via a 
+centralized backend and fulﬁlled manually by onboard sta Ư using a vending machine.  
+The system ensures: 
+ Seamless passenger ordering experience  
+ EƯicient order management for sta Ư  
+ Controlled access to vending machine (no passenger interaction)  
+ 
+2. 蚘蚓蚔蚕蚖蚗 Objective 
+Build a Minimum Viable Product (MVP)  consisting of: 
+1. Passenger-facing web UI (runs on bus screens)  
+2. Firebase backend for real-time order handling  
+3. StaƯ panel for managing and fulﬁlling orders  
+ 
+3. 軁軂 Users 
+3.1 Passenger 
+ Located in bus seat  
+ Uses in-seat screen  
+ Can place orders only  
+3.2 StaƯ 
+ Bus staƯ handling orders  
+ Uses mobile/tablet  
+ Prepares and delivers beverages  
+ 
+4. 膆껎껏 System Flow 
+1. Passenger selects item on screen  
+2. Passenger conﬁrms order  
+3. Order stored in Firebase  
+4. StaƯ panel receives real -time order  
+5. StaƯ prepares item using vending machine  
+6. StaƯ delivers to passenger seat  
+7. StaƯ marks order as "Delivered"  
+ 
+5.  Features & Requirements 
+ 
+5.1 Passenger Web UI 
+Functional Requirements 
+ Display menu:  
+o Tea  
+o CoƯee  
+ Optional customization:  
+o Sugar level (Low / Medium / High)  
+ Show:  
+o Seat number (pre-conﬁgured or input once)  
+ Actions:  
+o Place order  
+o View conﬁrmation screen  
+ 
+UI Screens 
+Screen 1: Menu 
+ Buttons:  
+o Tea  
+o CoƯee  
+ Sugar selection  
+ “Order Now” button  
+Screen 2: Conﬁrmation 
+ Message:  
+o “Order Conﬁrmed”  
+o Seat Number  
+o Estimated delivery time (static: ~3 minutes)  
+ 
+Non-Functional Requirements 
+ Must load instantly (<2 sec)  
+ Touch-friendly UI  
+ Works on low-power embedded screens  
+ Runs in browser (no app install)  
+ 
+5.2 StaƯ Panel 
+Functional Requirements 
+ Login (simple PIN or no-auth for MVP)  
+ View orders:  
+o Seat number  
+o Item (Tea/Co Ưee)  
+o Sugar level  
+o Timestamp  
+ Order status:  
+o Pending  
+o Preparing  
+o Delivered  
+ Ability to update status  
+ 
+Behavior 
+ Orders appear in real-time  
+ Sorted by time (oldest ﬁrst)  
+ 
+5.3 Firebase Backend 
+Services Used 
+ Firebase Realtime Database (or Firestore)  
+ Firebase Hosting (optional)  
+ 
+Data Structure (Example) 
+orders: { 
+  order_id_1: { 
+    seatNumber: "12", 
+    item: "Tea", 
+    sugar: "Medium", 
+    status: "Pending", 
+    timestamp: 1710000000 
+  } 
+} 
+ 
+Functional Requirements 
+ Store all orders  
+ Real-time sync between:  
+o Passenger UI  
+o StaƯ panel  
+ Update order status dynamically  
+ 
+Security Rules (MVP) 
+ Open read/write (for testing phase)  
+ Later: restrict access  
+ 
+6.  Technical Stack 
+Frontend 
+ HTML / CSS / JavaScript 
+(Optional: React if scalability needed)   
+Backend 
+ Firebase  
+Hosting 
+ Firebase Hosting OR local hosting  
+ 
+7. 껮껯껰 Connectivity 
+MVP Mode: 
+ Internet-based (Firebase)  
+Future: 
+ Local WiFi server (Raspberry Pi)  
+ 
+8. 긶긷길긹긺긻 Hardware Integration Scope 
+Included: 
+ None (manual operation of vending machine)  
+Excluded: 
+ Direct vending machine automation  
+ Payment integration  
+ 
+9. 료룍 Out of Scope (MVP) 
+ UPI / online payments  
+ Passenger login system  
+ Analytics dashboard  
+ Inventory tracking  
+ Multi-language support  
+ Direct vending machine control  
+ 
+10.  Performance Requirements 
+ Order latency: <1 second  
+ UI response: instant feedback  
+ System uptime: 99% during trip  
+ 
+11.  Testing Requirements 
+ Simulate 30-seat usage  
+ Test:  
+o Multiple simultaneous orders  
+o Network delays  
+o UI responsiveness  
+ 
+12. 띙띚띞띟띛띜띝 Deployment Plan 
+Phase 1: 
+ Develop UI + backend  
+ Internal testing  
+Phase 2: 
+ Deploy in 1 KSRTC bus  
+ Real-world trial  
+Phase 3: 
+ Iterate based on feedback  
+ 
+13. 궬궨궭궮궯 Success Metrics 
+ Orders per trip  
+ Avg delivery time  
+ Passenger usage rate (%)  
+ System uptime  
+ 
+14.  Constraints 
+ Must work on existing bus screens  
+ Limited hardware power  
+ Intermittent internet possible  
+ StaƯ must operate quickly  
+ 
+15. 꽺꽶꽷꽸꽹 Future Enhancements 
+ UPI payment integration  
+ Pre-booking system  
+ Snack add-ons  
+ Ads on screens  
+ AI-based recommendations  
+ 
+16.  Key Principle 
+Keep system simple, fast, and reliable. 
+Avoid over-engineering in MVP stage. 
+ 
+ 
