@@ -11,6 +11,7 @@ import Login from './pages/Staff/Login';
 import Dashboard from './pages/Staff/Dashboard';
 
 // Admin Pages
+import AdminLogin from './pages/Admin/Login';
 import AdminDashboard from './pages/Admin/Dashboard';
 
 // Unified Layout
@@ -32,6 +33,17 @@ export const setStaffAuth = (status) => isStaffAuthed = status;
 const StaffRoute = ({ children }) => {
   if (!isStaffAuthed) {
     return <Navigate to="/staff" replace />;
+  }
+  return children;
+};
+
+// Simple admin auth state
+let isAdminAuthed = false;
+export const setAdminAuth = (status) => isAdminAuthed = status;
+
+const AdminRoute = ({ children }) => {
+  if (!isAdminAuthed) {
+    return <Navigate to="/admin" replace />;
   }
   return children;
 };
@@ -65,7 +77,13 @@ function App() {
           </StaffRoute>
         } />
 
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        
+        <Route path="/admin/dashboard" element={
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        } />
       </Routes>
     </Router>
   );
